@@ -5,7 +5,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -pthread 
 
-SRC = philo.c src/atoi.c
+SRC = philo.c src/atoi.c src/forks.c
 
 
 OBJ = 
@@ -18,7 +18,7 @@ $(NAME):
 clean:
 		rm -f $(NAME)
 
-fclean: clean all
+fclean: clean 
 
 
 re: fclean re

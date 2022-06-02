@@ -18,5 +18,8 @@ typedef struct s_data{
 
 int	ft_atoi(const char *str);
 
+pthread_mutex_t *init_forks(int count);
+void destroy_forks(int count, pthread_mutex_t *forks);
+
 
 #endif
