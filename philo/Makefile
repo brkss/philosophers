@@ -5,7 +5,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -pthread 
 
-SRC = philo.c src/atoi.c src/forks.c
+SRC = philo.c src/atoi.c src/forks.c src/threads.c
 
 
 OBJ = 

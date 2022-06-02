@@ -21,5 +21,7 @@ int	ft_atoi(const char *str);
 pthread_mutex_t *init_forks(int count);
 void destroy_forks(int count, pthread_mutex_t *forks);
 
+pthread_t *init_philos(t_data *data);
+void wait_philos(pthread_t *philos, int count);
 
 #endif
