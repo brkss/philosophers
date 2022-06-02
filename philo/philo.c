@@ -22,6 +22,21 @@ pthread_mutex_t *init_forks(int count)
   return forks;
 }
 
+void destroy_forks(int count, pthread_mutex_t *forks)
+{
+  int i;
+  int status;
+  
+  i = 0;
+  while(i < count)
+  {
+    status = pthread_mutex_destroy(forks[i]);
+    if(status != 0) exit(1);
+    i++;
+  }
+  free(forks);
+}
+
 int main(int argc, char **argv)
 {
   t_data *data;
@@ -40,7 +55,8 @@ int main(int argc, char **argv)
     printf("die time \t %d \n", data->die_time);
     printf("eat time \t %d \n", data->eat_time);
     printf("sleep time \t %d \n", data->sleep_time);
-    free(forks);
+    destroy_forks(data->count, forks);
+    free(data);
   }
   else
     printf("Invalid Arguments ! (EXIT)\n");
