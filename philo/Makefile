@@ -3,9 +3,10 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -pthread 
 
 SRC = philo.c src/atoi.c
+
 
 OBJ = 
 
