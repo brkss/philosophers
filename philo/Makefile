@@ -5,7 +5,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra 
 
-SRC = philo.c
+SRC = philo.c src/atoi.c
 
 OBJ = 
 
@@ -17,7 +17,7 @@ $(NAME):
 clean:
 		rm -f $(NAME)
 
-fclean: clean
+fclean: clean all
 
 
 re: fclean re
