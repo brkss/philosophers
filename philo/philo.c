@@ -14,9 +14,9 @@ int main(int argc, char **argv)
     data->die_time = ft_atoi(argv[2]);
     data->eat_time = ft_atoi(argv[3]);
     data->sleep_time = ft_atoi(argv[4]);
-    // init forks 
+    // init forks and philosophers  
     forks = init_forks(data->count);
-    philos = init_philos(data);
+    philos = init_philos(data, forks);
     // ----
     printf("count \t\t %d \n", data->count);
     printf("die time \t %d \n", data->die_time);
@@ -29,6 +29,7 @@ int main(int argc, char **argv)
   }
   else
     printf("Invalid Arguments ! (EXIT)\n");
+  //while(1);
   return (0);
 
 }
