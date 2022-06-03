@@ -5,6 +5,7 @@
 int main(int argc, char **argv)
 {
   t_data *data;
+  t_th **threads_data;
   pthread_mutex_t *forks;
   pthread_t *philos;
 
@@ -16,12 +17,13 @@ int main(int argc, char **argv)
     data->sleep_time = ft_atoi(argv[4]);
     // init forks and philosophers  
     forks = init_forks(data->count);
-    philos = init_philos(data, forks);
+    threads_data = create_thread_data(data, forks);
+    philos = init_philos(data, threads_data);
     // ----
-    printf("count \t\t %d \n", data->count);
-    printf("die time \t %d \n", data->die_time);
-    printf("eat time \t %d \n", data->eat_time);
-    printf("sleep time \t %d \n", data->sleep_time);
+    //printf("count \t\t %d \n", data->count);
+    //printf("die time \t %d \n", data->die_time);
+    //printf("eat time \t %d \n", data->eat_time);
+    //printf("sleep time \t %d \n", data->sleep_time);
     wait_philos(philos, data->count);
     destroy_forks(data->count, forks);
     

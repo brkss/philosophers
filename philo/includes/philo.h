@@ -21,6 +21,7 @@ typedef struct s_th {
   int eat;
   int sleep;
   int id;
+  int is_dead;
   long last_eat;
   pthread_mutex_t *forks;
 } t_th;
@@ -30,8 +31,11 @@ int	ft_atoi(const char *str);
 pthread_mutex_t *init_forks(int count);
 void destroy_forks(int count, pthread_mutex_t *forks);
 
-pthread_t *init_philos(t_data *data, pthread_mutex_t *forks);
+pthread_t *init_philos(t_data *data, t_th **threads_data);
 void wait_philos(pthread_t *philos, int count);
 long gettime();
+
+t_th *init_thread_data(t_data *data, int index, pthread_mutex_t *forks);
+t_th **create_thread_data(t_data *data, pthread_mutex_t *forks);
 
 #endif
