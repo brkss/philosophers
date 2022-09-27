@@ -6,10 +6,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 # define EAT 1
 # define SLEEP 2
 # define THINK 3
+# define DIE 4
+# define FORK 5
 
 typedef struct s_philo {
   pthread_t id;
@@ -48,5 +51,8 @@ void destroy_mutexes(t_data *data);
 
 // -- time
 unsigned int get_time();
+
+// -- log
+void log_state(int philo_index, int action);
 
 #endif

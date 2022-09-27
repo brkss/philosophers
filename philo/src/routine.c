@@ -7,8 +7,13 @@ void *routine(void *arg)
   t_philo *data;
 
   data = (t_philo *)arg;
-  
-  printf("this called from thread ! : %d\n", data->index + 1);
+
+
+  log_state(data->index + 1, SLEEP);
+
+  usleep(10000);
+
+  log_state(data->index + 1, DIE);
 
   return NULL;
 }
