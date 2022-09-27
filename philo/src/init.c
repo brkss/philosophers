@@ -12,7 +12,9 @@ void init_philos(t_data *data)
     // init philos // threads 
     data->philos[i].num_eat = 0;
     data->philos[i].index = i;
-    data->philos[i].last_eat = 0;
+    data->philos[i].time_to_eat = data->time_to_eat;
+    data->philos[i].time_to_sleep = data->time_to_sleep;
+    data->philos[i].last_eat = get_time();
     data->philos[i].forks = data->forks;
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
     

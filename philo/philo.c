@@ -1,7 +1,6 @@
 
 #include "includes/philo.h"
 
-
 int main(int argc, char **argv)
 {
   t_data *data;
@@ -19,6 +18,7 @@ int main(int argc, char **argv)
      data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->nb_philos);
      init_philos(data);
      join_philos(data);
+     printf("time of day in miliseconds : %u \n", get_time());
      printf("PASS\n");
      free(data);
   }
