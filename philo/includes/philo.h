@@ -25,12 +25,17 @@ typedef struct s_data {
   pthread_mutex_t log;
 } t_data;
 
-// -- functions signature
+// -- utils
 int ft_atoi(const char *str);
 t_data *handle_params(int ac, char **av);
 
+// -- routine
 void *routine(void *arg);
+
+// -- init 
 void init_philos(t_data *data);
 void join_philos(t_data *data);
+void init_mutexes(t_data *data);
+void destroy_mutexes(t_data *data);
 
 #endif

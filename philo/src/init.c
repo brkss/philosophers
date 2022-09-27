@@ -28,3 +28,30 @@ void join_philos(t_data *data)
     i++;
   }
 }
+
+void init_mutexes(t->data *data)
+{
+  int i;
+
+  i = 0;
+  pthread_mutex_init(&data->log);
+  while(i < data->nb_philos)
+  {
+    pthread_mutex_init(&data->forks[i], NULL);
+    i++;
+  }
+}
+
+
+void destroy_mutexs(t_data *data)
+{
+  int i;
+
+  i = 0;
+  pthread_mutex_destroy(data->log);
+  while(i < data->nb_philos)
+  {
+    pthread_mutex_destroy(data->forks[i]);
+    i++;
+  }
+}
