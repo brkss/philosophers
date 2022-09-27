@@ -5,6 +5,7 @@
 int main(int argc, char **argv)
 {
   t_data *data;
+  
 
   if(argc == 5 || argc == 6)
   {
@@ -14,7 +15,12 @@ int main(int argc, char **argv)
        printf("Error: Invalid Params\n");
        return (0);
      }
+     data->philos = (pthread_t *)malloc(sizeof(pthread_t) * data->nb_philos);
+     data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+     init_philos(data);
+     join_philos(data);
      printf("PASS\n");
+     free(data);
   }
   else 
     printf("Error\n");
