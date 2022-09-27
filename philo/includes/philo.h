@@ -8,10 +8,11 @@
 #include <pthread.h>
 
 typedef struct s_philo {
+  pthread_t id;
   int last_eat;
   int num_eat;
-  pthread_mutex_t *forks;
   int index;
+  pthread_mutex_t *forks;
 } t_philo;
 
 typedef struct s_data {
@@ -20,7 +21,8 @@ typedef struct s_data {
   int time_to_eat;
   int time_to_sleep;
   int nb_to_eat;
-  pthread_t *philos;
+  t_philo *philos;
+  //pthread_t *philos;
   pthread_mutex_t *forks;
   pthread_mutex_t log;
 } t_data;
