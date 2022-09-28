@@ -35,6 +35,11 @@ int main(int argc, char **argv)
      {
         if(i >= data->nb_philos)
           i = 0;
+        if(check_num_eats(data))
+        {
+          detach_philos(data);
+          break;
+        }
         if(get_time() - data->philos[i].last_eat > data->time_to_die)
         {
           pthread_mutex_lock(&data->log);
@@ -46,8 +51,6 @@ int main(int argc, char **argv)
      }
      join_philos(data);
      destroy_mutexes(data);
-     //printf("time of day in miliseconds : %u \n", get_time());
-     //printf("PASS\n");
      free(data);
   }
   else 

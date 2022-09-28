@@ -16,6 +16,7 @@ void *routine(void *arg)
     log_state(data->index + 1, EAT, data->log);
     data->last_eat = get_time();    
     m_sleep(data->time_to_eat, get_time());
+    data->num_eat += 1;
     pthread_mutex_unlock(&data->forks[data->index]);
     pthread_mutex_unlock(&data->forks[(data->index + 1) % data->nb_philos]);
     // -- end eat --
