@@ -17,10 +17,10 @@
 typedef struct s_philo {
   pthread_t id;
   int nb_philos;
-  int last_eat;
   int num_eat;
-  int time_to_eat;
-  int time_to_sleep;
+  unsigned int last_eat;
+  unsigned int time_to_eat;
+  unsigned int time_to_sleep;
   int index;
   pthread_mutex_t *forks;
   pthread_mutex_t log;
@@ -28,9 +28,9 @@ typedef struct s_philo {
 
 typedef struct s_data {
   int nb_philos;
-  int time_to_die;
-  int time_to_eat;
-  int time_to_sleep;
+  unsigned int time_to_die;
+  unsigned int time_to_eat;
+  unsigned int time_to_sleep;
   int nb_to_eat;
   t_philo *philos;
   //pthread_t *philos;
@@ -55,6 +55,6 @@ void destroy_mutexes(t_data *data);
 unsigned int get_time();
 
 // -- log
-void log_state(int philo_index, int action);
+void log_state(int philo_index, int action, pthread_mutex_t log);
 
 #endif

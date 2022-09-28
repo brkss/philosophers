@@ -3,9 +3,10 @@
 #include "../includes/philo.h"
 
 
-void log_state(int philo_index, int action)
+void log_state(int philo_index, int action, pthread_mutex_t log)
 {
   char *state;
+
 
   if (action == SLEEP)
     state = "is sleeping";
@@ -20,6 +21,7 @@ void log_state(int philo_index, int action)
   else
     return;
 
+  pthread_mutex_lock(&log);
   printf("%u %d \t %s\n", get_time(), philo_index, state);
-  
+  pthread_mutex_unlock(&log);
 }
