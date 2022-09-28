@@ -49,6 +49,19 @@ void join_philos(t_data *data)
   }
 }
 
+
+void detach_philos(t_data *data)
+{
+  int i;
+
+  i = 0;
+  while(i < data->nb_philos)
+  {
+    pthread_detach(data->philos[i].id);
+    i++;
+  }
+}
+
 void init_mutexes(t_data *data)
 {
   int i;

@@ -50,15 +50,17 @@ void init_philos(t_data *data);
 void join_philos(t_data *data);
 void init_mutexes(t_data *data);
 void destroy_mutexes(t_data *data);
+void detach_philos(t_data *data);
 
 // -- time
 long long get_time();
 void m_sleep(int duration, long long init);
+
 
 // -- log
 void log_state(int philo_index, int action, pthread_mutex_t log);
 
 // -- check 
 int check_num_eats(t_data *data);
-
+void check_philos_state(t_data *data);
 #endif
