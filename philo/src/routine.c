@@ -10,12 +10,9 @@ void *routine(void *arg)
   {
     // -- eat --
     pthread_mutex_lock(&data->forks[data->index]);
-    //printf("2nd fork n : %d \n", (data->index +1 ));
     log_state(data->index + 1, FORK, data->log);
     pthread_mutex_lock(&data->forks[(data->index + 1) % data->nb_philos]);
-    //printf("1st fork n : %d \n", ((data->index + 1) % data->nb_philos) + 1);
     log_state(data->index + 1, FORK, data->log);
-
     log_state(data->index + 1, EAT, data->log);
     data->last_eat = get_time();    
     m_sleep(data->time_to_eat, get_time());

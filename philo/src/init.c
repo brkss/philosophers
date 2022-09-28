@@ -8,8 +8,6 @@ void init_philos(t_data *data)
   i = 0;
   while(i < data->nb_philos)
   {
-    if (i % 2 == 0)
-    {
     data->philos[i].log = data->log;
     data->philos[i].nb_philos = data->nb_philos;
     data->philos[i].num_eat = 0;
@@ -19,16 +17,12 @@ void init_philos(t_data *data)
     data->philos[i].last_eat = get_time();
     data->philos[i].forks = data->forks;
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
-    if(i == data->nb_philos - 2)
-      usleep(600);
-    }
-    i++;
+    i += 2;
   }
-  i = 0;
+  usleep(600);
+  i = 1;
   while(i < data->nb_philos)
   {
-    if (i % 2 != 0)
-    {
     data->philos[i].log = data->log;
     data->philos[i].nb_philos = data->nb_philos;
     data->philos[i].num_eat = 0;
@@ -38,10 +32,7 @@ void init_philos(t_data *data)
     data->philos[i].last_eat = get_time();
     data->philos[i].forks = data->forks;
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
-    //if(i == data->nb_philos - 2)
-      //usleep(600);
-    }
-    i++;
+    i += 2;
   }
 
 }
