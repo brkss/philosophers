@@ -1,6 +1,18 @@
 
 #include "../includes/philo.h"
 
+void init_philos_data(t_data *data, int i)
+{
+    data->philos[i].log = data->log;
+    data->philos[i].nb_philos = data->nb_philos;
+    data->philos[i].num_eat = 0;
+    data->philos[i].index = i;
+    data->philos[i].time_to_eat = data->time_to_eat;
+    data->philos[i].time_to_sleep = data->time_to_sleep;
+    data->philos[i].last_eat = get_time();
+    data->philos[i].forks = data->forks;
+}
+
 void init_philos(t_data *data)
 {
   int i;
@@ -8,14 +20,7 @@ void init_philos(t_data *data)
   i = 0;
   while(i < data->nb_philos)
   {
-    data->philos[i].log = data->log;
-    data->philos[i].nb_philos = data->nb_philos;
-    data->philos[i].num_eat = 0;
-    data->philos[i].index = i;
-    data->philos[i].time_to_eat = data->time_to_eat;
-    data->philos[i].time_to_sleep = data->time_to_sleep;
-    data->philos[i].last_eat = get_time();
-    data->philos[i].forks = data->forks;
+    init_philos_data(data, i);
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
     i += 2;
   }
@@ -23,18 +28,10 @@ void init_philos(t_data *data)
   i = 1;
   while(i < data->nb_philos)
   {
-    data->philos[i].log = data->log;
-    data->philos[i].nb_philos = data->nb_philos;
-    data->philos[i].num_eat = 0;
-    data->philos[i].index = i;
-    data->philos[i].time_to_eat = data->time_to_eat;
-    data->philos[i].time_to_sleep = data->time_to_sleep;
-    data->philos[i].last_eat = get_time();
-    data->philos[i].forks = data->forks;
+    init_philos_data(data, i);
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
     i += 2;
   }
-
 }
 
 void join_philos(t_data *data)
