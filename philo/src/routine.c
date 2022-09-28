@@ -5,7 +5,6 @@ void *routine(void *arg)
 {
   t_philo *data;
 
-  usleep(300);
   data = (t_philo *)arg;
   while(1)
   {
@@ -18,16 +17,15 @@ void *routine(void *arg)
     log_state(data->index + 1, FORK, data->log);
 
     log_state(data->index + 1, EAT, data->log);
-    usleep(data->time_to_eat);
     data->last_eat = get_time();    
+    m_sleep(data->time_to_eat, get_time());
     pthread_mutex_unlock(&data->forks[data->index]);
     pthread_mutex_unlock(&data->forks[(data->index + 1) % data->nb_philos]);
     // -- end eat --
     log_state(data->index + 1, THINK, data->log);
     log_state(data->index + 1, SLEEP, data->log);
-    usleep(data->time_to_sleep);
+    m_sleep(data->time_to_sleep, get_time());
   }
-  
 
   return NULL;
 }

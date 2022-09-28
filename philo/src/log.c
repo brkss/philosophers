@@ -22,6 +22,6 @@ void log_state(int philo_index, int action, pthread_mutex_t log)
     return;
 
   pthread_mutex_lock(&log);
-  printf("%u %d \t %s\n", get_time(), philo_index, state);
+  printf("%lld \t %d \t %s\n", get_time(), philo_index, state);
   pthread_mutex_unlock(&log);
 }

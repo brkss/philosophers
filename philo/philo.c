@@ -35,19 +35,19 @@ int main(int argc, char **argv)
      {
         if(i >= data->nb_philos)
           i = 0;
-        if(get_time() - data->philos[i].last_eat >= data->time_to_die)
+        if(get_time() - data->philos[i].last_eat > data->time_to_die)
         {
-          printf("%u %d \t died\n", get_time(), data->philos[i].index + 1);
+          pthread_mutex_lock(&data->log);
+          printf("%lld %d \t died\n", get_time(), data->philos[i].index + 1);
           detach_philos(data);
           break;
         }
         i++;
      }
-
      join_philos(data);
      destroy_mutexes(data);
-     printf("time of day in miliseconds : %u \n", get_time());
-     printf("PASS\n");
+     //printf("time of day in miliseconds : %u \n", get_time());
+     //printf("PASS\n");
      free(data);
   }
   else 

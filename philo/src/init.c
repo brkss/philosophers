@@ -1,7 +1,6 @@
 
 #include "../includes/philo.h"
 
-
 void init_philos(t_data *data)
 {
   int i;
@@ -9,6 +8,8 @@ void init_philos(t_data *data)
   i = 0;
   while(i < data->nb_philos)
   {
+    if (i % 2 == 0)
+    {
     data->philos[i].log = data->log;
     data->philos[i].nb_philos = data->nb_philos;
     data->philos[i].num_eat = 0;
@@ -19,7 +20,27 @@ void init_philos(t_data *data)
     data->philos[i].forks = data->forks;
     pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
     if(i == data->nb_philos - 2)
-      usleep(600);    
+      usleep(600);
+    }
+    i++;
+  }
+  i = 0;
+  while(i < data->nb_philos)
+  {
+    if (i % 2 != 0)
+    {
+    data->philos[i].log = data->log;
+    data->philos[i].nb_philos = data->nb_philos;
+    data->philos[i].num_eat = 0;
+    data->philos[i].index = i;
+    data->philos[i].time_to_eat = data->time_to_eat;
+    data->philos[i].time_to_sleep = data->time_to_sleep;
+    data->philos[i].last_eat = get_time();
+    data->philos[i].forks = data->forks;
+    pthread_create(&data->philos[i].id, NULL, &routine, &data->philos[i]);
+    //if(i == data->nb_philos - 2)
+      //usleep(600);
+    }
     i++;
   }
 
