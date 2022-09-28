@@ -16,12 +16,14 @@
 
 typedef struct s_philo {
   pthread_t id;
+  int nb_philos;
   int last_eat;
   int num_eat;
   int time_to_eat;
   int time_to_sleep;
   int index;
   pthread_mutex_t *forks;
+  pthread_mutex_t log;
 } t_philo;
 
 typedef struct s_data {
