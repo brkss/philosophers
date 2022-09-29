@@ -25,6 +25,7 @@ typedef struct s_data {
   int nb_to_eat;
   pid_t *pids;
   sem_t *log;
+  sem_t *dead;
 } t_data;
 
 typedef struct s_philo
@@ -38,6 +39,7 @@ typedef struct s_philo
   long long last_eat;
   sem_t *forks;
   sem_t *log;
+  sem_t *dead;
 } t_philo;
 
 // -- utils 

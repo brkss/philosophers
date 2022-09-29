@@ -15,6 +15,7 @@ static t_philo *init(t_data *data)
   philo->forks = data->forks;
   philo->num_eat = 0;
   philo->log = data->log;
+  philo->dead = data->dead;
   return (philo);
 }
 
@@ -28,7 +29,9 @@ void *checker_routine(void *arg)
   {
     if(get_time() - philo->last_eat > philo->time_to_die)
     {
+      sem_wait(philo->log);
       printf("%lld %d \t died\n", get_time(), philo->index);
+      sem_post(philo->dead);
       exit(33);
     }
   }
@@ -50,14 +53,7 @@ int routine(t_data *data, int index)
   pthread_t *checker_thread;
 
   philo = init(data);
-  int i = 0;
-  while(i < data->nb_philos)
-  {
-    printf("pid : %d \n", data->pids[i]);
-    i++;
-  }
-  printf("------------\n");
-  exit(0);
+  
   if(!philo) return (0);
   philo->index = index;
   checker_thread = checker(philo);
