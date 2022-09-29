@@ -6,7 +6,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = philo.c
+SRCS = philo.c src/atoi.c src/utils.c
 
 all: $(NAME)
 

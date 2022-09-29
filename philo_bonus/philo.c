@@ -1,38 +1,27 @@
 
-
 #include "includes/philo.h"
 
-# define NUM 4 
-
-int main()
+int main(int argc, char **argv)
 {
-  pid_t pid[NUM];
-  sem_t *sem;
-  int i;
-
-  sem = sem_open("fork", O_CREAT, 0644, NUM);
+  t_data *data;
   
-  i = 0;
-  while(i < NUM)
+  if(argc == 5 || argc == 6)
   {
-    pid[i] = fork();
-    if(pid[i] == 0)
+    data = (t_data *)malloc(sizeof(t_data));
+    data = handle_params(argc, argv);
+    if(!data)
     {
-      sem_wait(sem);
-      sleep(1);
-      printf("this printed from the sup process\n");
-      sem_post(sem);
-      exit(0);
+      printf("Error: Invalid Parameters\n");
+      return (0);
     }
-    i++;
+    printf("nb philos : %d\n", data->nb_philos);
+    printf("time to eat %lld\n", data->time_to_eat);
+    printf("time to die %lld\n", data->time_to_die);
+    printf("time to sleep %lld\n", data->time_to_sleep);
+    printf("nb to eat : %d\n", data->nb_to_eat);
   }
-
-  i = 0;
-  while(i < NUM)
-  {
-    waitpid(pid[i], NULL,0);
-    i++;
-  }
+  else 
+    printf("Error: Invalid Arguments!\n");
 
   return (0);
 }
