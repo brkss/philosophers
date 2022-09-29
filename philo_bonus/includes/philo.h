@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <semaphore.h>
+#include <sys/time.h>
 
 typedef struct s_data {
   sem_t *forks;
@@ -22,5 +23,9 @@ typedef struct s_data {
 // -- utils 
 int ft_atoi(const char *str);
 t_data *handle_params(int ac, char **av);
+
+// -- time
+long long get_time();
+void m_sleep(int duration, long long init);
 
 #endif
