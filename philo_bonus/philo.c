@@ -25,16 +25,7 @@ int main(int argc, char **argv)
       data->pids[i] = fork();
       if(data->pids[i] == 0)
       {
-        sem_wait(data->forks);
-        sem_wait(data->forks);
-        // routine
-        printf("eating...\n");
-        m_sleep(data->time_to_eat, get_time());
-        printf("sleeping...\n");
-        m_sleep(data->time_to_sleep, get_time());
-        printf("thinking...\n");
-        sem_post(data->forks);
-        sem_post(data->forks);
+        routine(data, i + 1); 
         exit(0);
       }
       i++;
@@ -46,6 +37,9 @@ int main(int argc, char **argv)
       waitpid(data->pids[i], NULL, 0);
       i++;
     }
+    sem_close(data->forks);
+    free(data->pids);
+    free(data);
   }
   else 
     printf("Error: Invalid Arguments!\n");
