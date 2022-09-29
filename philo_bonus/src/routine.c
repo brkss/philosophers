@@ -23,14 +23,14 @@ void *checker_routine(void *arg)
 {
   t_philo *philo;
 
-  m_sleep(1000, get_time());
+  m_sleep(100, get_time());
   philo = (t_philo *)arg;
   while(1)
   {
     if(get_time() - philo->last_eat > philo->time_to_die)
     {
       sem_wait(philo->log);
-      printf("%lld %d \t died\n", get_time(), philo->index);
+      printf("%lld \t %d \t died\n", get_time(), philo->index);
       sem_post(philo->dead);
       exit(33);
     }
