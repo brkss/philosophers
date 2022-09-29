@@ -32,8 +32,20 @@ int main(int argc, char **argv)
         routine(data, i + 1); 
         exit(0);
       }
-      i++;
+      i += 2;
     }
+    i = 1;
+    while(i < data->nb_philos)
+    {
+      data->pids[i] = fork();
+      if(data->pids[i] == 0)
+      {
+        routine(data, i + 1); 
+        exit(0);
+      }
+      i += 2;
+    }
+    //wait for philosophers 
     waitpid(-1, NULL, 0);
     sem_wait(data->dead);
     i = 0;
