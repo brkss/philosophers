@@ -39,6 +39,14 @@ int main(int argc, char **argv)
       waitpid(data->pids[i], NULL, 0);
       i++;
     }
+    printf("passed wait pid !\n"); 
+    //waitpid(data->pids[0], NULL, -1);
+    i = 0;
+    while(i < data->nb_philos)
+    {
+      kill(data->pids[i], 9);
+      i++;
+    }
     sem_close(data->forks);
     free(data->pids);
     free(data);

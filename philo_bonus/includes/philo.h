@@ -8,6 +8,7 @@
 #include <semaphore.h>
 #include <sys/time.h>
 #include <pthread.h>
+#include <signal.h>
 
 # define EAT 1
 # define SLEEP 2 
@@ -36,6 +37,7 @@ typedef struct s_philo
   long long time_to_sleep;
   long long last_eat;
   sem_t *forks;
+  sem_t *log;
 } t_philo;
 
 // -- utils 
