@@ -17,6 +17,21 @@ static t_philo *init(t_data *data)
   return (philo);
 }
 
+void *checker_routine(void *arg)
+{
+  (void)arg;
+  printf("checking...\n");
+  return NULL;
+}
+
+void checker(t_philo *philo)
+{
+  pthread_t checker_thread;
+
+  pthread_create(&checker_thread, NULL, checker_routine, philo);
+  pthread_join(checker_thread, NULL);
+}
+
 int routine(t_data *data, int index)
 {
   t_philo *philo;
@@ -24,24 +39,25 @@ int routine(t_data *data, int index)
   philo = init(data);
   if(!philo) return (0);
   philo->index = index;
+  checker(philo);
   while(1)
   {
     sem_wait(philo->forks);
-    log_state(index, FORK);
+    log_state(index, FORK, data->log);
     sem_wait(philo->forks);
-    log_state(index, FORK);
+    log_state(index, FORK, data->log);
     
     philo->last_eat = get_time();
-    log_state(index, EAT);
+    log_state(index, EAT, data->log);
     m_sleep(philo->time_to_eat, get_time());
     philo->num_eat += 1;
     
     sem_post(philo->forks);
     sem_post(philo->forks);
     
-    log_state(index, EAT);
+    log_state(index, SLEEP, data->log);
     m_sleep(philo->time_to_sleep, get_time());
-    log_state(index, THINK);
+    log_state(index, THINK, data->log);
   }
   return (1);
 }

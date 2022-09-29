@@ -1,5 +1,4 @@
 
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -8,6 +7,7 @@
 #include <unistd.h>
 #include <semaphore.h>
 #include <sys/time.h>
+#include <pthread.h>
 
 # define EAT 1
 # define SLEEP 2 
@@ -23,7 +23,7 @@ typedef struct s_data {
   long long time_to_sleep;
   int nb_to_eat;
   pid_t *pids;
-  
+  sem_t *log;
 } t_data;
 
 typedef struct s_philo
@@ -50,6 +50,6 @@ long long get_time();
 void m_sleep(int duration, long long init);
 
 // -- log
-void log_state(int index, int action);
+void log_state(int index, int action, sem_t *log);
 
 #endif

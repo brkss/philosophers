@@ -3,7 +3,7 @@
 #include "../includes/philo.h"
 
 
-void log_state(int index, int action)
+void log_state(int index, int action, sem_t *log)
 {
   char *state;
 
@@ -20,6 +20,7 @@ void log_state(int index, int action)
     state = "has taken a fork";
   else
     return;
-
+  sem_wait(log);
   printf("%lld \t %d \t %s\n", get_time(), index, state);
+  sem_post(log);
 }

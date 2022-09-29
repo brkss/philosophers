@@ -16,7 +16,9 @@ int main(int argc, char **argv)
       return (0);
     }
     sem_unlink("forks");
+    sem_unlink("log");
     data->forks = sem_open("forks", O_CREAT, 0644, data->nb_philos);
+    data->log = sem_open("log", O_CREAT, 0644, 1);
     data->pids = (pid_t *)malloc(sizeof(pid_t) * data->nb_philos);
     // create philosophers 
     i = 0;
