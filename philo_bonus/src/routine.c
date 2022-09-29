@@ -32,6 +32,7 @@ void *checker_routine(void *arg)
       sem_wait(philo->log);
       printf("%lld \t %d \t died\n", get_time(), philo->index);
       sem_post(philo->dead);
+      free(philo);
       exit(33);
     }
   }

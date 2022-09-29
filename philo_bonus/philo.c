@@ -8,7 +8,6 @@ int main(int argc, char **argv)
 
   if(argc == 5 || argc == 6)
   {
-    data = (t_data *)malloc(sizeof(t_data));
     data = handle_params(argc, argv);
     if(!data)
     {
@@ -63,6 +62,7 @@ int main(int argc, char **argv)
   else 
     printf("Error: Invalid Arguments!\n");
 
+  while(1);
   
   return (0);
 }
