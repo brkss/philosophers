@@ -33,6 +33,7 @@ int main(int argc, char **argv)
       }
       i += 2;
     }
+    usleep(600);
     i = 1;
     while(i < data->nb_philos)
     {
@@ -62,7 +63,6 @@ int main(int argc, char **argv)
   else 
     printf("Error: Invalid Arguments!\n");
 
-  while(1);
   
   return (0);
 }
