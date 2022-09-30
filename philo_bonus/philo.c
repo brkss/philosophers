@@ -1,8 +1,27 @@
 
 #include "includes/philo.h"
 
+void *watcher_routine(void *arg)
+{
+  t_data *data;
+  int i;
+
+  data = (t_data *)arg;
+  sem_wait(data->dead);
+  i = 0;
+  while(i < data->nb_philos)
+  {
+    kill(data->pids[i], 9);
+    i++;
+  }
+  return (NULL);
+}
+
+
+
 int main(int argc, char **argv)
 {
+  pthread_t watcher;
   t_data *data;
   int i;
 
@@ -21,6 +40,7 @@ int main(int argc, char **argv)
     data->log = sem_open("log", O_CREAT, 0644, 1);
     data->dead = sem_open("dead", O_CREAT, 0644, 0);
     data->pids = (pid_t *)malloc(sizeof(pid_t) * data->nb_philos);
+    pthread_create(&watcher, NULL, watcher_routine, data);    
     // create philosophers 
     i = 0;
     while(i < data->nb_philos)
@@ -46,12 +66,11 @@ int main(int argc, char **argv)
       i += 2;
     }
     //wait for philosophers 
-    waitpid(-1, NULL, 0);
-    sem_wait(data->dead);
+    //waitpid(-1, NULL, 0);
     i = 0;
     while(i < data->nb_philos)
     {
-      kill(data->pids[i], 9);
+      waitpid(data->pids[i], NULL, 0);
       i++;
     }
     sem_close(data->dead);
