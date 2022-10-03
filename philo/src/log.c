@@ -6,7 +6,7 @@
 /*   By: bberkass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:16:37 by bberkass          #+#    #+#             */
-/*   Updated: 2022/10/03 17:17:10 by bberkass         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:04:28 by bberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	log_state(int philo_index, int action, t_philo *data)
 	else
 		return ;
 	pthread_mutex_lock(&(data->log));
-	printf("%lld \t %d \t %s\n", get_time() - data->start_time, philo_index, state);
+	printf("%lld \t %d \t %s\n", get_time() - data->start_time,
+		philo_index, state);
 	pthread_mutex_unlock(&(data->log));
 }
