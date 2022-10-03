@@ -6,7 +6,7 @@
 /*   By: bberkass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:17:33 by bberkass          #+#    #+#             */
-/*   Updated: 2022/10/03 17:18:13 by bberkass         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:00:10 by bberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*routine(void *arg)
 	data = (t_philo *)arg;
 	while (1)
 	{
+		pthread_mutex_lock(&data->forks[data->index]);
 		log_state(data->index + 1, FORK, data->log);
 		pthread_mutex_lock(&data->forks[(data->index + 1) % data->nb_philos]);
 		log_state(data->index + 1, FORK, data->log);

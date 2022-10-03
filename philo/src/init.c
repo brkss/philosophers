@@ -6,7 +6,7 @@
 /*   By: bberkass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:15:23 by bberkass          #+#    #+#             */
-/*   Updated: 2022/10/03 17:16:21 by bberkass         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:45:30 by bberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,6 @@ void	join_philos(t_data *data)
 	}
 }
 
-void	detach_philos(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb_philos)
-	{
-		pthread_detach(data->philos[i].id);
-		i++;
-	}
-}
-
 void	init_mutexes(t_data *data)
 {
 	int	i;
@@ -78,19 +66,6 @@ void	init_mutexes(t_data *data)
 	while (i < data->nb_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		i++;
-	}
-}
-
-void	destroy_mutexes(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_destroy(&data->log);
-	while (i < data->nb_philos)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
 }
