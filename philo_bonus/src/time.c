@@ -8,7 +8,7 @@ long long get_time()
 
   total = 0;
   gettimeofday(&time, NULL);
-  total += (long long int)time.tv_sec * 1000;;
+  total += (long long int)time.tv_sec * 1000;
   total += (long long int)time.tv_usec / 1000 ;
 
   return (total);

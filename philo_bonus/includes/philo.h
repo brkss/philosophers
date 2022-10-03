@@ -9,6 +9,7 @@
 #include <sys/time.h>
 #include <pthread.h>
 #include <signal.h>
+#include <sys/wait.h>
 
 # define EAT 1
 # define SLEEP 2 

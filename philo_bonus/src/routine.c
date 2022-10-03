@@ -23,10 +23,15 @@ void *checker_routine(void *arg)
 {
   t_philo *philo;
 
-  m_sleep(100, get_time());
+  usleep(100);
   philo = (t_philo *)arg;
   while(1)
   {
+    if(philo->nb_to_eat != -1 && philo->num_eat >= philo->nb_to_eat)
+    {
+      free(philo);
+      exit(0);
+    }
     if(get_time() - philo->last_eat > philo->time_to_die)
     {
       sem_wait(philo->log);
@@ -67,15 +72,16 @@ int routine(t_data *data, int index)
     
     philo->last_eat = get_time();
     log_state(index, EAT, data->log);
+	philo->num_eat += 1;
     m_sleep(philo->time_to_eat, get_time());
-    philo->num_eat += 1;
     
     sem_post(philo->forks);
     sem_post(philo->forks);
     
+	log_state(index, THINK, data->log);
     log_state(index, SLEEP, data->log);
     m_sleep(philo->time_to_sleep, get_time());
-    log_state(index, THINK, data->log);
+    
   }
   pthread_join(*checker_thread, NULL);
   return (1);
