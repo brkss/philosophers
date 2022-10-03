@@ -3,16 +3,16 @@
 
 NAME = philo
 
-CC = gcc
+CC = gcc 
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra 
 
-SRCS = philo.c src/atoi.c src/utils.c
+SRCS = philo.c src/atoi.c src/utils.c src/init.c src/routine.c src/time.c src/log.c src/check.c
 
 all : $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -lpthread 
 
 clean:
 	rm -f $(NAME)
