@@ -6,7 +6,7 @@
 /*   By: bberkass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:08:15 by bberkass          #+#    #+#             */
-/*   Updated: 2022/10/03 18:00:49 by bberkass         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:02:17 by bberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 		data->philos = (t_philo *)malloc(sizeof(t_philo) * data->nb_philos);
-		data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+		data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+				* data->nb_philos);
 		init_mutexes(data);
 		init_philos(data);
 		check_philos_state(data);
