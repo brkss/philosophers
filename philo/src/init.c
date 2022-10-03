@@ -21,6 +21,7 @@ void	init_philos_data(t_data *data, int i)
 	data->philos[i].time_to_eat = data->time_to_eat;
 	data->philos[i].time_to_sleep = data->time_to_sleep;
 	data->philos[i].last_eat = get_time();
+	data->philos[i].start_time = data->start_time;
 	data->philos[i].forks = data->forks;
 }
 
@@ -29,6 +30,7 @@ void	init_philos(t_data *data)
 	int	i;
 
 	i = 0;
+	data->start_time = get_time();
 	while (i < data->nb_philos)
 	{
 		init_philos_data(data, i);

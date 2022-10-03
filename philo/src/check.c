@@ -45,7 +45,7 @@ void	check_philos_state(t_data *data)
 		if (get_time() - data->philos[i].last_eat > data->time_to_die)
 		{
 			pthread_mutex_lock(&data->log);
-			printf("%lld %d \t died\n", get_time(), data->philos[i].index + 1);
+			printf("%lld %d \t died\n", get_time() - data->start_time, data->philos[i].index + 1);
 			detach_philos(data);
 			break ;
 		}

@@ -33,6 +33,7 @@ typedef struct s_philo {
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				index;
+	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	log;
 }	t_philo;
@@ -43,6 +44,7 @@ typedef struct s_data {
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				nb_to_eat;
+	long long		start_time;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	log;
@@ -67,7 +69,7 @@ long long	get_time(void);
 void		m_sleep(int duration, long long init);
 
 // -- log
-void		log_state(int philo_index, int action, pthread_mutex_t log);
+void		log_state(int philo_index, int action, t_philo *data);
 
 // -- check 
 int			check_num_eats(t_data *data);

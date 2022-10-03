@@ -12,7 +12,7 @@
 
 #include "../includes/philo.h"
 
-void	log_state(int philo_index, int action, pthread_mutex_t log)
+void	log_state(int philo_index, int action, t_philo *data)
 {
 	char	*state;
 
@@ -28,7 +28,7 @@ void	log_state(int philo_index, int action, pthread_mutex_t log)
 		state = "has taken a fork";
 	else
 		return ;
-	pthread_mutex_lock(&log);
-	printf("%lld \t %d \t %s\n", get_time(), philo_index, state);
-	pthread_mutex_unlock(&log);
+	pthread_mutex_lock(&(data->log));
+	printf("%lld \t %d \t %s\n", get_time() - data->start_time, philo_index, state);
+	pthread_mutex_unlock(&(data->log));
 }

@@ -20,17 +20,17 @@ void	*routine(void *arg)
 	while (1)
 	{
 		pthread_mutex_lock(&data->forks[data->index]);
-		log_state(data->index + 1, FORK, data->log);
+		log_state(data->index + 1, FORK, data);
 		pthread_mutex_lock(&data->forks[(data->index + 1) % data->nb_philos]);
-		log_state(data->index + 1, FORK, data->log);
-		log_state(data->index + 1, EAT, data->log);
+		log_state(data->index + 1, FORK, data);
+		log_state(data->index + 1, EAT, data);
 		data->last_eat = get_time();
 		m_sleep(data->time_to_eat, get_time());
 		data->num_eat += 1;
 		pthread_mutex_unlock(&data->forks[data->index]);
 		pthread_mutex_unlock(&data->forks[(data->index + 1) % data->nb_philos]);
-		log_state(data->index + 1, THINK, data->log);
-		log_state(data->index + 1, SLEEP, data->log);
+		log_state(data->index + 1, THINK, data);
+		log_state(data->index + 1, SLEEP, data);
 		m_sleep(data->time_to_sleep, get_time());
 	}
 	return (NULL);
