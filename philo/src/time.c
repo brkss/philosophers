@@ -26,7 +26,6 @@ long long	get_time(void)
 
 void	m_sleep(int duration, long long init)
 {
-	usleep(300);
 	while (get_time() - init < (long long)duration)
-		;
+	usleep(300);
 }
