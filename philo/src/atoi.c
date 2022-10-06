@@ -29,30 +29,14 @@ static void	ft_checksign(const char *str, int *negative, unsigned int *index)
 	}
 }
 
-static int	check_long(int total, char c, int negative)
-{
-	int	res;
-
-	res = 1;
-	if ((unsigned long)total * 10 + (c - 48)
-		> (unsigned long)9223372036854775807 && !negative)
-		res = -1;
-	else if ((unsigned long)total * 10 + (c - 48)
-		> (unsigned long)9223372036854775807 + 1 && negative)
-		res = 0;
-	return (res);
-}
-
 int	ft_atoi(const char *str)
 {
 	unsigned int	i;
 	int				negative;
 	int				mul;
 	int				total;
-	int				is_max;
 
-	is_max = 0;
-	negative = 0;
+  negative = 0;
 	i = 0;
 	mul = 1;
 	total = 0;
@@ -61,9 +45,6 @@ int	ft_atoi(const char *str)
 	ft_checksign(str, &negative, &i);
 	while (str[i] && ft_isdigit(str[i]))
 	{
-		is_max = check_long(total, str[i], negative);
-		if (is_max != 1)
-			return (is_max);
 		total = total * 10 + (str[i] - 48);
 		i++;
 	}
